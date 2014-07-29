@@ -10,7 +10,7 @@ Installation
 
 Add the following line to you `composer.json` file under `require`.
 
-    "mariuzzo/laravel-js-localization": "1.0.*"
+    "davidjoy/laravel-js-localization": "1.0.*"
 
 Run:
 
@@ -70,7 +70,7 @@ This is the documentation regarding the thin JavaScript library. The library hig
 
 **Calling the `choice` method with replacements**
 
-    Lang.choice('messages.apples', 10, { name: 'Joe' });    
+    Lang.choice('messages.apples', 10, { name: 'Joe' });
 
 For more detailed information, take a look at the source: [Lang.js](https://github.com/rmariuzzo/Laravel-JS-Localization/blob/develop/js/lang.js).
 

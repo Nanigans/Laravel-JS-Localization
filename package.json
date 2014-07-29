@@ -17,7 +17,7 @@
     "author": "rmariuzzo",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/rmariuzzo/Laravel-JS-Localization/issues"
+        "url": "https://github.com/davidjoy/Laravel-JS-Localization/issues"
     },
     "devDependencies": {
         "jasmine-node": "~1.14.3"
