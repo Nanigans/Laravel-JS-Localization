@@ -33,4 +33,10 @@ describe('The Lang.choice() method', function() {
         })).toBe('The foo must be accepted.');
     });
 
+    it('should replace :count with the count param', function() {
+        expect(Lang.choice('messages.pluralCount', 1)).toBe('1 apple');
+        expect(Lang.choice('messages.pluralCount', 10)).toBe('10 apples');
+        expect(Lang.choice('messages.pluralCount', 0)).toBe('0 apples');
+    })
+
 });
