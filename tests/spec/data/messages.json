@@ -151,7 +151,9 @@
         "settings": "Paramet",
         "save": "Sere",
         "language": "Langaj",
-        "settingsSaved": "Paramet sere!"
+        "settingsSaved": "Paramet sere!",
+        "plural": "Youn p\u00f2m|P\u00f2m anpil",
+        "pluralCount": ":count pòm|pòm :count"
     },
     "es.messages": {
         "home": "Inicio",
@@ -186,6 +188,8 @@
         "settings": "Configuraci\u00f3n",
         "save": "Guardar",
         "language": "Idioma",
-        "settingsSaved": "Configuraci\u00f3n guardada satisfactoriamente!"
+        "settingsSaved": "Configuraci\u00f3n guardada satisfactoriamente!",
+        "plural": "Una manzana|Muchas manzanas",
+        "pluralCount": ":count manzana|:count manzanas"
     }
 }
