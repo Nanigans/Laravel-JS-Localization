@@ -1,6 +1,6 @@
 {
     "name": "laravel-js-localization",
-    "version": "1.0.3",
+    "version": "1.0.6",
     "description": "Laravel Localization in JavaScript",
     "main": "js/lang.js",
     "directories": {
