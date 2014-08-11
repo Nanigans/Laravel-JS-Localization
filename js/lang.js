@@ -30,7 +30,7 @@
      * Returns a translation message.
      *
      * @param key {string} The key of the message.
-     * @param replacements {object} The replacements to be done in the message.
+     * @param replacements {object} (Optional) The replacements to be done in the message.
      *
      * @return {string} The translation message, if not found the given key.
      */
@@ -39,7 +39,7 @@
             return key;
         }
 
-        var message = this._getMessage(key, replacements);
+        var message = this._getMessage(key);
         if (message === null) {
             return key;
         }
@@ -69,14 +69,17 @@
      * Gets the plural or singular form of the message specified based on an integer value.
      *
      * @param key {string} The key of the message.
-     * @param count {integer} The number of elements.
-     * @param replacements {object} The replacements to be done in the message.
+     * @param count {int} The number of elements.
+     * @param replacements {object} (Optional) The replacements to be done in the message.
      *
      * @return {string} The translation message according to an integer value.
      */
     Lang.prototype.choice = function(key, count, replacements) {
         // Set default values for parameters replace and locale
-        replacements = typeof replacements !== 'undefined' ? replacements : [];
+        replacements = typeof replacements !== 'undefined' ? replacements : {};
+
+        // The count must be replaced if found in the message
+        replacements['count'] = count;
 
         // Message to get the plural or singular
         var message = this.get(key, replacements);
@@ -110,14 +113,14 @@
         }
 
         // Check the explicit rules
-        for (var i = 0; i < explicitRules.length; i++) {
+        for (i = 0; i < explicitRules.length; i++) {
             if (this._testInterval(count, explicitRules[i])) {
                 return messageParts[i];
             }
         }
 
         // Standard rules
-        if (count > 1) {
+        if (count != 1) {
             return messageParts[1];
         } else {
             return messageParts[0];
@@ -171,16 +174,16 @@
      */
     Lang.prototype._getMessage = function(key) {
 
-        key = this._parseKey(key);
+        var parsedKey = this._parseKey(key);
 
         // Ensure message source exists.
-        if (this.messages[key.source] === undefined) {
+        if (this.messages[parsedKey.source] === undefined) {
             return null;
         }
 
         // Get message text.
-        var message = this.messages[key.source];
-        while (key.entries.length && (message = message[key.entries.shift()]));
+        var message = this.messages[parsedKey.source];
+        while (parsedKey.entries.length && (message = message[parsedKey.entries.shift()]));
 
         if (typeof message !== 'string') {
             return null;
@@ -199,7 +202,9 @@
      */
     Lang.prototype._applyReplacements = function(message, replacements) {
         for (var replace in replacements) {
-            message = message.split(':' + replace).join(replacements[replace]);
+            if (replacements.hasOwnProperty(replace)) {
+                message = message.split(':' + replace).join(replacements[replace]);
+            }
         }
         return message;
     };
