@@ -216,19 +216,66 @@
      * @param  interval {string}    The interval to be compared with the count.
      * @return {boolean}    Returns true if count is within interval; false otherwise.
      */
-    Lang.prototype._testInterval = function(count, interval) {
-        /**
-         * From the Symfony\Component\Translation\Interval Docs
-         *
-         * Tests if a given number belongs to a given math interval.
-         * An interval can represent a finite set of numbers: {1,2,3,4}
-         * An interval can represent numbers between two numbers: [1, +Inf] ]-1,2[
-         * The left delimiter can be [ (inclusive) or ] (exclusive).
-         * The right delimiter can be [ (exclusive) or ] (inclusive).
-         * Beside numbers, you can use -Inf and +Inf for the infinite.
-         */
+    Lang.prototype._testInterval = function (count, interval) {
+      /**
+       * From the Symfony\Component\Translation\Interval Docs
+       *
+       * Tests if a given number belongs to a given math interval.
+       * An interval can represent a finite set of numbers: {1,2,3,4}
+       * An interval can represent numbers between two numbers: [1, +Inf] ]-1,2[
+       * The left delimiter can be [ (inclusive) or ] (exclusive).
+       * The right delimiter can be [ (exclusive) or ] (inclusive).
+       * Beside numbers, you can use -Inf and +Inf for the infinite.
+       */
 
-        return false;
+      // Yanked from: https://github.com/willdurand/BazingaJsTranslationBundle/blob/master/Resources/js/translator.js
+
+      var _iPluralRegex = new RegExp(/^\s*(\{\s*(\-?\d+[\s*,\s*\-?\d+]*)\s*\})|([\[\]])\s*(-Inf|\-?\d+)\s*,\s*(\+?Inf|\-?\d+)\s*([\[\]])/);
+
+      if (_iPluralRegex.test(interval)) {
+        var _matches = interval.match(_iPluralRegex);
+
+        if (_matches[1]) {
+          var _ns = _matches[2].split(','),
+            _n;
+
+          for (_n in _ns) {
+            if (count == _ns[_n]) {
+              return true;
+            }
+          }
+        } else {
+          var _leftNumber = convert_number(_matches[4]);
+          var _rightNumber = convert_number(_matches[5]);
+
+          if (('[' === _matches[3] ? count >= _leftNumber : count > _leftNumber) &&
+            (']' === _matches[6] ? count <= _rightNumber : count < _rightNumber)) {
+            return true;
+          }
+        }
+      }
+      return false;
+
     };
+
+    /**
+     * The logic comes from the Symfony2 PHP Framework.
+     *
+     * Convert number as String, "Inf" and "-Inf"
+     * values to number values.
+     *
+     * @param {String} number   A litteral number
+     * @return {Number}         The int value of the number
+     * @api private
+     */
+    function convert_number(number) {
+      if ('-Inf' === number) {
+        return Number.NEGATIVE_INFINITY;
+      } else if ('+Inf' === number || 'Inf' === number) {
+        return Number.POSITIVE_INFINITY;
+      }
+
+      return parseInt(number, 10);
+    }
 
 
