@@ -1,6 +1,6 @@
 {
     "name": "laravel-js-localization",
-    "version": "1.0.6",
+    "version": "1.0.8",
     "description": "Laravel Localization in JavaScript",
     "main": "js/lang.js",
     "directories": {
@@ -12,12 +12,12 @@
     },
     "repository": {
         "type": "git",
-        "url": "git://github.com/davidjoy/Laravel-JS-Localization.git"
+        "url": "git://github.com/Nanigans/Laravel-JS-Localization.git"
     },
     "author": "rmariuzzo",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/davidjoy/Laravel-JS-Localization/issues"
+        "url": "https://github.com/Nanigans/Laravel-JS-Localization/issues"
     },
     "devDependencies": {
         "jasmine-node": "~1.14.3"

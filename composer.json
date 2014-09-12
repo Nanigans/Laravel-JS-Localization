@@ -1,9 +1,9 @@
 {
-    "name": "davidjoy/laravel-js-localization",
+    "name": "Nanigans/laravel-js-localization",
     "description": "Laravel Localization in JavaScript",
     "type": "library",
     "keywords": ["laravel", "localization", "i18n", "javascript", "js", "lang"],
-    "homepage": "https://github.com/davidjoy/laravel-js-localization",
+    "homepage": "https://github.com/Nanigans/laravel-js-localization",
     "license": "MIT",
     "authors": [{
         "name": "Rubens Mariuzzo",
@@ -17,8 +17,8 @@
         "role": "Developer"
     }],
     "support": {
-        "issues": "https://github.com/davidjoy/laravel-js-localization/issues",
-        "source": "https://github.com/davidjoy/laravel-js-localization"
+        "issues": "https://github.com/Nanigans/laravel-js-localization/issues",
+        "source": "https://github.com/Nanigans/laravel-js-localization"
     },
     "require": {
         "php": ">=5.3.0",

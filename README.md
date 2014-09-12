@@ -10,7 +10,7 @@ Installation
 
 Add the following line to you `composer.json` file under `require`.
 
-    "davidjoy/laravel-js-localization": "1.0.*"
+    "Nanigans/laravel-js-localization": "1.0.*"
 
 Run:
 
